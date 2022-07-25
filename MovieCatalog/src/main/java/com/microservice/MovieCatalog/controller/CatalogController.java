@@ -22,7 +22,7 @@ public class CatalogController {
 	
 	@GetMapping("/catalog/{userId}")
 	public List<CatalogItem> getCatalog(@PathVariable("userId") int userId){
-		UserRating newRatings = restTemplate.getForObject("http://localhost:8082/user/"+userId, UserRating.class);
+		UserRating newRatings = restTemplate.getForObject("http://RATING-SERVICE/user/"+userId, UserRating.class);
 //		List<Rating> ratings = Arrays.asList(
 //				new Rating(1,10),
 //				new Rating(2,9),
@@ -30,7 +30,7 @@ public class CatalogController {
 //				);
 		return (newRatings.getRatings().stream()
 		.map(rating -> {
-			Movie movie = restTemplate.getForObject("http://localhost:8081/getMovie/"+rating.getMovieId(), Movie.class);
+			Movie movie = restTemplate.getForObject("http://MOVIE-INFO-SERVICE/getMovie/"+rating.getMovieId(), Movie.class);
 			return new CatalogItem(movie.getName(), "A place that is very quite", rating.getRating());	
 		})
 		.collect(Collectors.toList())
