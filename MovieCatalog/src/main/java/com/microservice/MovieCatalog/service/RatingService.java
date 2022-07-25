@@ -23,7 +23,12 @@ public class RatingService implements IRatingService {
 					@HystrixProperty(name = "execution.isolation.thread.timeoutInMilliseconds", value = "2000"),
 					@HystrixProperty(name = "circuitBreaker.requestVolumeThreshold", value = "5"), // no of previous request hystrix going to look up
 					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"), // break circuit if 50% error
-					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000") // break circuit for 5 secs
+					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000"), // break circuit for 5 secs
+			},
+			threadPoolKey = "ratingPool",
+			threadPoolProperties = {
+					@HystrixProperty(name = "coreSize", value = "20"),
+					@HystrixProperty(name = "maxQueueSize", value = "10")
 			}
 			)
 	public UserRating getRating(int userId) {
