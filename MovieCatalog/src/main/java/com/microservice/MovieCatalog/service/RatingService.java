@@ -25,7 +25,7 @@ public class RatingService implements IRatingService {
 					@HystrixProperty(name = "circuitBreaker.errorThresholdPercentage", value = "50"), // break circuit if 50% error
 					@HystrixProperty(name = "circuitBreaker.sleepWindowInMilliseconds", value = "5000"), // break circuit for 5 secs
 			},
-			threadPoolKey = "ratingPool",
+			threadPoolKey = "ratingPool", // this is bulkhead pattern to specify the queue size for this method.
 			threadPoolProperties = {
 					@HystrixProperty(name = "coreSize", value = "20"),
 					@HystrixProperty(name = "maxQueueSize", value = "10")
