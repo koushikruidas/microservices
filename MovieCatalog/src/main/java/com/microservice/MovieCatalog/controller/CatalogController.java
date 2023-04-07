@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.microservice.MovieCatalog.model.CatalogItem;
@@ -15,6 +16,7 @@ import com.microservice.MovieCatalog.service.MovieInfoService;
 import com.microservice.MovieCatalog.service.RatingService;
 
 @RestController
+@RequestMapping("/movie")
 public class CatalogController {
 	
 	@Autowired
